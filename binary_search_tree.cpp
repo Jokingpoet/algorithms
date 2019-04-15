@@ -45,6 +45,32 @@ void inorder(TreeNode* root) {
 	}
 }
 
+int FindMinGreater(TreeNode* root, int n) {
+	int best = INT16_MAX;
+	while (root->left or root->right) {
+		if (root->val > n && root->val < best) {
+			best = root->val;
+		}
+		if (root->val <= n) {
+			if (root->right) { root = root->right; }
+			else { break; }
+		}
+		else {
+			if (root->left) {
+				root = root->left;
+			}
+			else {
+				break;
+			}
+			
+		}
+	}
+	if (root->val > n && root->val < best) {
+		best = root->val;
+	}
+	return best;
+}
+
 int main() {
 	srand(int(time(0)));
 	TreeNode *root = new TreeNode(rand() % 1000);
